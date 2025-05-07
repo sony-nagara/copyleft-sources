@@ -1949,6 +1949,38 @@ static ssize_t rvschg_suspend_show(struct class *c,
 }
 static CLASS_ATTR_RW(rvschg_suspend);
 
+
+static ssize_t batt_prot_disabled_store(struct class *c,
+						struct class_attribute *attr,
+						const char *buf, size_t count)
+{
+	struct somc_bcext_dev *bcext_dev = container_of(c,
+					struct somc_bcext_dev, bcext_class);
+	int batt_prot_disabled;
+
+	if (kstrtoint(buf, 10, &batt_prot_disabled))
+		return -EINVAL;
+
+	somc_bcext_set_prop(bcext_dev, BATTMNGR_SOMC_PROP_BATT_PROT_DISABLED,
+							batt_prot_disabled);
+
+	return count;
+
+}
+static ssize_t batt_prot_disabled_show(struct class *c,
+					struct class_attribute *attr, char *buf)
+{
+	struct somc_bcext_dev *bcext_dev = container_of(c,
+					struct somc_bcext_dev, bcext_class);
+	int batt_prot_disabled;
+
+	somc_bcext_get_prop(bcext_dev, BATTMNGR_SOMC_PROP_BATT_PROT_DISABLED,
+							&batt_prot_disabled);
+
+	return scnprintf(buf, PAGE_SIZE, "%d\n", batt_prot_disabled);
+}
+static CLASS_ATTR_RW(batt_prot_disabled);
+
 static ssize_t ets_usb_icl_store(struct class *c, struct class_attribute *attr,
 						const char *buf, size_t count)
 {
@@ -2232,6 +2264,7 @@ static struct attribute *somc_bcext_class_attrs[] = {
 	&class_attr_wls_cep.attr,
 	&class_attr_wls_tx_notify.attr,
 	&class_attr_wls_monitor_for_debug.attr,
+	&class_attr_batt_prot_disabled.attr,
 	&class_attr_ets_usb_icl.attr,
 	&class_attr_ets_wls_icl.attr,
 	&class_attr_ets_fcc.attr,
