@@ -1147,6 +1147,13 @@ static int cam_vfe_handle_irq_bottom_half(void *handler_priv,
 				vfe_priv->enable_sof_irq_debug =
 					false;
 				vfe_priv->irq_debug_cnt = 0;
+
+				if (evt_info.res_id >= CAM_VFE_TOP_MUX_MAX) {
+					CAM_ERR(CAM_ISP,
+						"VFE:%u inval res_id for mux_rsrc:%d",
+						vfe_priv->hw_intf->hw_idx, evt_info.res_id);
+					return -EINVAL;
+				}
 			}
 		} else {
 			CAM_DBG(CAM_ISP, "VFE:%d Received SOF",

@@ -2541,6 +2541,7 @@ struct ipa3_context {
 	u32 page_wq_reschd_time;
 	struct list_head minidump_list_head;
 	bool is_dual_pine_config;
+	u32 ipa_smem_size;
 };
 
 struct ipa3_plat_drv_res {
