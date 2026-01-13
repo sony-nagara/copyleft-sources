@@ -79,6 +79,7 @@ art_cc_library {
 cc_library {
     name: "libnativeloader_lazy",
     defaults: ["libnativeloader-defaults"],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     visibility: [
         "//frameworks/base/core/jni",
         "//frameworks/native/opengl/libs",

@@ -181,6 +181,7 @@ art_cc_library {
         "libdexfile_defaults",
         "libart_nativeunwind_defaults",
     ],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     target: {
         android: {
             shared_libs: [
@@ -339,6 +340,7 @@ cc_library_headers {
     name: "libdexfile_external_headers",
     defaults: ["art_defaults"],
     visibility: ["//visibility:public"],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     host_supported: true,
     export_include_dirs: ["external/include"],
 
@@ -436,6 +438,7 @@ art_cc_library_static {
     name: "libdexfile_support",
     defaults: ["art_defaults"],
     visibility: ["//visibility:public"],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     host_supported: true,
     srcs: [
         "external/dex_file_supp.cc",
@@ -506,6 +509,7 @@ art_cc_test {
 cc_library_static {
     name: "libdexfile_support_static",
     defaults: ["art_defaults"],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     host_supported: true,
     srcs: [
         "external/dex_file_supp.cc",
@@ -563,6 +567,7 @@ art_cc_test {
 cc_library_static {
     name: "libdexfile_static",
     host_supported: true,
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     visibility: [
         // Required for simpleperf, libsimpleperf_record, and libsimpleperf_report
         // in the NDK.

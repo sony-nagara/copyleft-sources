@@ -23,6 +23,7 @@ cc_defaults {
 cc_library_headers {
     name: "libnativebridge-headers",
     defaults: ["art_defaults"],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     host_supported: true,
     export_include_dirs: ["include"],
 
@@ -90,6 +91,7 @@ cc_library {
         "com.android.media.swcodec",
     ],
 
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     host_supported: false,
     srcs: ["native_bridge_lazy.cc"],
     runtime_libs: ["libnativebridge"],

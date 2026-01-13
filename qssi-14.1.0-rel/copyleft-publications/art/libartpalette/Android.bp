@@ -61,6 +61,7 @@ art_cc_library {
     export_header_lib_headers: [
         "jni_headers",
     ],
+    enabled: true, // Override ART_MODULE_BUILD_FROM_SOURCE=false from art_defaults.
     target: {
         // Targets supporting dlopen build the client library which loads
         // and binds the methods in the libartpalette-system library.
